@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice2", "Microservice2\Microservice2.csproj", "{E305254A-5CE3-46E4-BDEC-577C813F49FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice3", "Microservice3\Microservice3.csproj", "{2A2EA7EF-E2AC-4926-91F1-81A5719FAFE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservice1", "Microservice1\Microservice1.csproj", "{1A7D37F3-4CFA-4630-9D71-47B6977A248A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaOrchestrator", "SagaOrchestrator\SagaOrchestrator.csproj", "{7873622D-8D77-4AEE-BFF9-3537FDBCA121}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaTestClient", "SagaTestClient\SagaTestClient.csproj", "{63601CFF-A959-4955-80CE-75C4CCD9727C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E305254A-5CE3-46E4-BDEC-577C813F49FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E305254A-5CE3-46E4-BDEC-577C813F49FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E305254A-5CE3-46E4-BDEC-577C813F49FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E305254A-5CE3-46E4-BDEC-577C813F49FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A2EA7EF-E2AC-4926-91F1-81A5719FAFE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A2EA7EF-E2AC-4926-91F1-81A5719FAFE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A2EA7EF-E2AC-4926-91F1-81A5719FAFE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A2EA7EF-E2AC-4926-91F1-81A5719FAFE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A7D37F3-4CFA-4630-9D71-47B6977A248A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A7D37F3-4CFA-4630-9D71-47B6977A248A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A7D37F3-4CFA-4630-9D71-47B6977A248A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A7D37F3-4CFA-4630-9D71-47B6977A248A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7873622D-8D77-4AEE-BFF9-3537FDBCA121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7873622D-8D77-4AEE-BFF9-3537FDBCA121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7873622D-8D77-4AEE-BFF9-3537FDBCA121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7873622D-8D77-4AEE-BFF9-3537FDBCA121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63601CFF-A959-4955-80CE-75C4CCD9727C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63601CFF-A959-4955-80CE-75C4CCD9727C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63601CFF-A959-4955-80CE-75C4CCD9727C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63601CFF-A959-4955-80CE-75C4CCD9727C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
