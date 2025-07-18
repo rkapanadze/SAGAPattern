@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Microservice3;
 
@@ -72,7 +72,7 @@ public enum InventoryTransactionStatus
     Pending,
     Completed,
     Failed,
-    Restored
+    Restored,
 }
 
 public class InventoryResponse
@@ -110,11 +110,46 @@ public class InventoryService : IInventoryService
     {
         var sampleProducts = new[]
         {
-            new ProductInventory { ProductId = "PROD001", AvailableQuantity = 100, ReservedQuantity = 0, Price = 29.99m, LastUpdated = DateTime.UtcNow },
-            new ProductInventory { ProductId = "PROD002", AvailableQuantity = 50, ReservedQuantity = 0, Price = 49.99m, LastUpdated = DateTime.UtcNow },
-            new ProductInventory { ProductId = "PROD003", AvailableQuantity = 25, ReservedQuantity = 0, Price = 79.99m, LastUpdated = DateTime.UtcNow },
-            new ProductInventory { ProductId = "PROD004", AvailableQuantity = 75, ReservedQuantity = 0, Price = 19.99m, LastUpdated = DateTime.UtcNow },
-            new ProductInventory { ProductId = "PROD005", AvailableQuantity = 10, ReservedQuantity = 0, Price = 99.99m, LastUpdated = DateTime.UtcNow }
+            new ProductInventory
+            {
+                ProductId = "PROD001",
+                AvailableQuantity = 100,
+                ReservedQuantity = 0,
+                Price = 29.99m,
+                LastUpdated = DateTime.UtcNow,
+            },
+            new ProductInventory
+            {
+                ProductId = "PROD002",
+                AvailableQuantity = 50,
+                ReservedQuantity = 0,
+                Price = 49.99m,
+                LastUpdated = DateTime.UtcNow,
+            },
+            new ProductInventory
+            {
+                ProductId = "PROD003",
+                AvailableQuantity = 25,
+                ReservedQuantity = 0,
+                Price = 79.99m,
+                LastUpdated = DateTime.UtcNow,
+            },
+            new ProductInventory
+            {
+                ProductId = "PROD004",
+                AvailableQuantity = 75,
+                ReservedQuantity = 0,
+                Price = 19.99m,
+                LastUpdated = DateTime.UtcNow,
+            },
+            new ProductInventory
+            {
+                ProductId = "PROD005",
+                AvailableQuantity = 10,
+                ReservedQuantity = 0,
+                Price = 99.99m,
+                LastUpdated = DateTime.UtcNow,
+            },
         };
 
         foreach (var product in sampleProducts)
@@ -135,7 +170,7 @@ public class InventoryService : IInventoryService
                 return new InventoryResponse
                 {
                     Success = false,
-                    Error = "No items provided for inventory update"
+                    Error = "No items provided for inventory update",
                 };
             }
 
@@ -147,7 +182,9 @@ public class InventoryService : IInventoryService
                 {
                     if (product.AvailableQuantity < item.Quantity)
                     {
-                        unavailableItems.Add($"Product {item.ProductId} - requested: {item.Quantity}, available: {product.AvailableQuantity}");
+                        unavailableItems.Add(
+                            $"Product {item.ProductId} - requested: {item.Quantity}, available: {product.AvailableQuantity}"
+                        );
                     }
                 }
                 else
@@ -161,7 +198,7 @@ public class InventoryService : IInventoryService
                 return new InventoryResponse
                 {
                     Success = false,
-                    Error = $"Insufficient inventory: {string.Join(", ", unavailableItems)}"
+                    Error = $"Insufficient inventory: {string.Join(", ", unavailableItems)}",
                 };
             }
 
@@ -173,7 +210,7 @@ public class InventoryService : IInventoryService
                 return new InventoryResponse
                 {
                     Success = false,
-                    Error = "Simulated inventory system failure"
+                    Error = "Simulated inventory system failure",
                 };
             }
 
@@ -184,7 +221,7 @@ public class InventoryService : IInventoryService
                 OrderId = request.OrderId,
                 Items = request.Items,
                 Status = InventoryTransactionStatus.Pending,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.UtcNow,
             };
 
             _transactions[request.TransactionId] = transaction;
@@ -212,17 +249,13 @@ public class InventoryService : IInventoryService
             {
                 Success = true,
                 Message = $"Inventory updated successfully for order {request.OrderId}",
-                UpdatedInventory = updatedInventory
+                UpdatedInventory = updatedInventory,
             };
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, $"Error updating inventory for order {request.OrderId}");
-            return new InventoryResponse
-            {
-                Success = false,
-                Error = ex.Message
-            };
+            return new InventoryResponse { Success = false, Error = ex.Message };
         }
     }
 
@@ -238,7 +271,7 @@ public class InventoryService : IInventoryService
                 return new InventoryResponse
                 {
                     Success = true, // Consider this successful as there's nothing to restore
-                    Message = "No inventory transaction found to restore"
+                    Message = "No inventory transaction found to restore",
                 };
             }
 
@@ -258,7 +291,9 @@ public class InventoryService : IInventoryService
                 }
 
                 transaction.Status = InventoryTransactionStatus.Restored;
-                _logger.LogInformation($"Inventory restored successfully for transaction {request.TransactionId}");
+                _logger.LogInformation(
+                    $"Inventory restored successfully for transaction {request.TransactionId}"
+                );
 
                 // Simulate processing delay
                 await Task.Delay(400);
@@ -266,28 +301,31 @@ public class InventoryService : IInventoryService
                 return new InventoryResponse
                 {
                     Success = true,
-                    Message = $"Inventory restored successfully for transaction {request.TransactionId}",
-                    UpdatedInventory = restoredInventory
+                    Message =
+                        $"Inventory restored successfully for transaction {request.TransactionId}",
+                    UpdatedInventory = restoredInventory,
                 };
             }
             else
             {
-                _logger.LogInformation($"Transaction {request.TransactionId} is not in completed state, current status: {transaction.Status}");
+                _logger.LogInformation(
+                    $"Transaction {request.TransactionId} is not in completed state, current status: {transaction.Status}"
+                );
                 return new InventoryResponse
                 {
                     Success = true,
-                    Message = $"Transaction {request.TransactionId} was not completed, no restoration needed"
+                    Message =
+                        $"Transaction {request.TransactionId} was not completed, no restoration needed",
                 };
             }
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, $"Error restoring inventory for transaction {request.TransactionId}");
-            return new InventoryResponse
-            {
-                Success = false,
-                Error = ex.Message
-            };
+            _logger.LogError(
+                ex,
+                $"Error restoring inventory for transaction {request.TransactionId}"
+            );
+            return new InventoryResponse { Success = false, Error = ex.Message };
         }
     }
 
@@ -346,7 +384,14 @@ public class InventoryController : ControllerBase
     [HttpGet("health")]
     public IActionResult Health()
     {
-        return Ok(new { Status = "Healthy", Service = "Inventory Service", Timestamp = DateTime.UtcNow });
+        return Ok(
+            new
+            {
+                Status = "Healthy",
+                Service = "Inventory Service",
+                Timestamp = DateTime.UtcNow,
+            }
+        );
     }
 
     [HttpGet("all")]
